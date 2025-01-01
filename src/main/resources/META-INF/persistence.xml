@@ -1,0 +1,34 @@
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    version="3.0"
+    xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+
+    <persistence-unit
+        name="default"
+        transaction-type="RESOURCE_LOCAL">
+
+        <!-- Entity classes go here -->
+        <class>com.example.model.Trainee</class>
+        <class>com.example.model.Training</class>
+        <class>com.example.model.User</class>
+        <class>com.example.model.Trainer</class>
+        <class>com.example.model.TrainingType</class>
+
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL10Dialect" />
+            <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />
+            <property name="jakarta.persistence.jdbc.url"
+                value="jdbc:postgresql://localhost:5432/postgres" />
+            <property name="jakarta.persistence.jdbc.user" value="postgres" />
+            <property name="jakarta.persistence.jdbc.password" value="postgres" />
+            <property name="jakarta.persistence.schema-generation.database.action"
+                value="drop-and-create" />
+
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.highlight_sql" value="true" />
+            <property name="hibernate.use_sql_comments" value="true" />
+            <property name="hibernate.type" value="trace" />
+        </properties>
+    </persistence-unit>
+</persistence>
