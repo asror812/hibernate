@@ -5,6 +5,7 @@ import com.example.dto.ActivationDTO;
 import com.example.dto.AuthDTO;
 import com.example.dto.ChangePasswordDTO;
 import com.example.dto.UserAuthDTO;
+import com.example.dto.UserCreateDTO;
 import com.example.model.User;
 
 public interface UserRepository {
@@ -19,4 +20,5 @@ public interface UserRepository {
 
 
     void changePassword(AuthDTO authDTO, ChangePasswordDTO changePasswordDTO);
+
 }

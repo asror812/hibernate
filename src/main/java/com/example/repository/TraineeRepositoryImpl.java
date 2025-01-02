@@ -37,11 +37,13 @@ public class TraineeRepositoryImpl implements TraineeRepository {
         try {
             entityManager.getTransaction().begin();
             ValidationUtil.validate(createDTO);
+
             String username = userRepositoryImpl.generateUsername(createDTO);
             String password = PasswordGeneratorUtil.generate();
 
             User user = new User(null, createDTO.getFirstName(), createDTO.getLastName(), username,
-                    password, true);
+                    password, true);     
+
 
             Trainee trainee = new Trainee();
             trainee.setDateOfBirth(createDTO.getDateOfBirth());
@@ -159,15 +161,16 @@ public class TraineeRepositoryImpl implements TraineeRepository {
 
         try {
             entityManager.getTransaction().begin();
-            Optional<User> existingUser = userRepositoryImpl.findByUsername(username);
+            Optional<Trainee> existingTrainee = findByUsername(authDTO, username);;
 
-            if (existingUser.isEmpty()) {
-                LOGGER.error("User with username {} found", username);
-                throw new EntityNotFoundException("User with username " + username + " not found");
+            if (existingTrainee.isEmpty()) {
+                LOGGER.error("Trainee with username {} found", username);
+                throw new EntityNotFoundException("Trainee with username " + username + " not found");
             }
 
-            User user = existingUser.get();
-            entityManager.remove(user);
+            Trainee trainee = existingTrainee.get();
+            entityManager.remove(trainee);
+
             entityManager.getTransaction().commit();
         } catch (Exception e) {
             if (entityManager.getTransaction().isActive()) {

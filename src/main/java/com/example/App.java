@@ -51,7 +51,6 @@ public class App {
             LOGGER.info("{}  created", optional.get());
 
             // Get all
-            LOGGER.info("GET ALL");
 
             User user = optional.get().getUser();
 
@@ -112,7 +111,7 @@ public class App {
             LOGGER.info("{}  created", optional1.get());
 
             // Get all
-            System.out.println("GET ALL");
+            System.out.println("GET ALL Trainer");
             List<Trainer> allTrainers = trainerRepositoryImpl.getAll(authDTO);
             for (Trainer trainer : allTrainers) {
                 LOGGER.info("{} ", trainer);;
@@ -174,7 +173,7 @@ public class App {
                 // Find all
                 List<Training> trainings = trainingRepositoryImpl.getAll(authDTO);
 
-                LOGGER.info("FIND ALL");
+                LOGGER.info("GET ALL Training");
                 for (Training t : trainings) {
                     LOGGER.info("{} ", t);
                 }
@@ -204,6 +203,8 @@ public class App {
                 }
 
             }
+        } catch (Exception e) {
+            LOGGER.error("An exception occurred: ", e);
         }
 
     }
